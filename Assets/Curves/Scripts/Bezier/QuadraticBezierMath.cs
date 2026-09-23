@@ -14,7 +14,10 @@ public static class QuadraticBezierMath
         // TODO Slice 1.4: evaluate the quadratic at t with the De Casteljau construction.
         // Check: DeCasteljauQuadratic_SamplesPointFromEquivalentQuadraticFormula passes.
         // Next: Slice 1.5 in Demo/QuadraticBezierCurve.cs.
-        return Vector3.zero;
+        Vector3 A = Vector3.Lerp(p0, p1, t);
+        Vector3 B = Vector3.Lerp(p1, p2, t);
+        
+        return Vector3.Lerp(A, B, t);
     }
 
     public static Vector3 SampleTangentDeCasteljau(Vector3 p0, Vector3 p1, Vector3 p2, float t)

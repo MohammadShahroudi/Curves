@@ -37,6 +37,7 @@ public class QuadraticBezierCurve : MonoBehaviour
         // Check: turn on Scene-view Gizmos. Three markers sit on the points.
         // Move a point outside Play Mode; its marker follows.
         // Next: Slice 1.3 in CurveGizmos.cs.
+        CurveGizmos.Draw(10, SamplePoint, p0, p1, p2);
     }
 
     public Vector3 SamplePoint(float t)
@@ -45,11 +46,13 @@ public class QuadraticBezierCurve : MonoBehaviour
         // current world positions.
         // Check: SceneCurve_SamplesCurrentWorldPointsWithoutCallbacks(False,False) passes.
         // Next: Slice 1.6 in CurveGizmos.cs.
+        
+        Vector3 sample = QuadraticBezierMath.SamplePointDeCasteljau(p0.position, p1.position, p2.position, t);
 
         // TODO Slice 6.2 (upgrade 1.5): switch to your Bernstein evaluator.
         // Check: the curve and follower look the same. This method calls Bernstein; keep it.
         // Next: Slice 6.3 in Bezier/QuadraticBezierMath.cs.
-        return Vector3.zero;
+        return sample;
     }
 
     public Vector3 SampleTangent(float t)
