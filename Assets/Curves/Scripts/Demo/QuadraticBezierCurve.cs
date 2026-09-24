@@ -21,6 +21,14 @@ public class QuadraticBezierCurve : MonoBehaviour
         // Space them evenly in t and include both endpoints.
         // Check: restart Play Mode. The line matches the Scene-view gizmos.
         // Next: Slice 2.1 in FollowCurve.cs. </> end of Slice 1
+        LineRenderer lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = numSamples;
+        
+        for (int i = 0; i < numSamples; i++)
+        {
+            lineRenderer.SetPosition(0, SamplePoint((float) i / 10));
+            lineRenderer.SetPosition(1, SamplePoint((float) i / 10));
+        }
 
         // TODO Slice 7.3 (upgrade 1.7): draw the line with power-basis evaluation.
         // Prepare the coefficients once, outside the sample loop.
@@ -37,7 +45,7 @@ public class QuadraticBezierCurve : MonoBehaviour
         // Check: turn on Scene-view Gizmos. Three markers sit on the points.
         // Move a point outside Play Mode; its marker follows.
         // Next: Slice 1.3 in CurveGizmos.cs.
-        CurveGizmos.Draw(10, SamplePoint, p0, p1, p2);
+        CurveGizmos.Draw(numSamples, SamplePoint, p0, p1, p2);
     }
 
     public Vector3 SamplePoint(float t)

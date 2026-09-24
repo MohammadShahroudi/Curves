@@ -28,6 +28,7 @@ public static class QuadraticBezierMath
         // to t using the product rule. Explain each step." Then derive it yourself.
         // Check: DeCasteljauQuadratic_SamplesTangentFromFinalInterpolationSegment passes.
         // Next: Slice 2.3 in Demo/QuadraticBezierCurve.cs.
+        
         return Vector3.zero;
     }
 

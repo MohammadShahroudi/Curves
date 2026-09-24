@@ -20,6 +20,7 @@ public class FollowCurve : MonoBehaviour
         // TODO Slice 2.1: move this object to the curve at t.
         // Check: the follower travels along the line. Tick triggerReset to repeat.
         // Next: Slice 2.2 in Bezier/QuadraticBezierMath.cs.
+        
 
         // TODO Slice 2.4: face this object along the curve, using your 2.3 tangent.
         // Check: the follower faces along the curve, with no zero-direction warning.

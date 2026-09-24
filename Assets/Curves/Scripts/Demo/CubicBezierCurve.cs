@@ -22,6 +22,8 @@ public class CubicBezierCurve : MonoBehaviour
         // Space them evenly in t and include both endpoints.
         // Check: restart Play Mode. The line matches the gizmos and reaches p0 and p3.
         // Next: Slice 3.5 in Bezier/CubicBezierMath.cs.
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = numSamples;
     }
 
     void OnDrawGizmos()
@@ -31,6 +33,7 @@ public class CubicBezierCurve : MonoBehaviour
         // Check: four markers, an open three-segment polygon, and a curve that reaches
         // both ends. Move a point outside Play Mode; everything follows.
         // Next: Slice 3.4 in Start.
+        // CurveGizmos.Draw(numSamples, SamplePoint,  p0, p1, p2, p3);
     }
 
     public Vector3 SamplePoint(float t)
@@ -39,7 +42,9 @@ public class CubicBezierCurve : MonoBehaviour
         // current world positions.
         // Check: SceneCurve_SamplesCurrentWorldPointsWithoutCallbacks(True,False) passes.
         // Next: Slice 3.3 in OnDrawGizmos.
-        return Vector3.zero;
+        Vector3 sample = CubicBezierMath.SamplePoint(p0.position, p1.position, p2.position, p3.position, t);
+        
+        return sample;
     }
 
     public Vector3 SampleTangent(float t)
