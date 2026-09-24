@@ -23,11 +23,13 @@ public class QuadraticBezierCurve : MonoBehaviour
         // Next: Slice 2.1 in FollowCurve.cs. </> end of Slice 1
         LineRenderer lineRenderer = gameObject.GetComponent<LineRenderer>();
         lineRenderer.positionCount = numSamples;
+        // Debug.Log(p0.localPosition);
         
         for (int i = 0; i < numSamples; i++)
         {
-            lineRenderer.SetPosition(0, SamplePoint((float) i / 10));
-            lineRenderer.SetPosition(1, SamplePoint((float) i / 10));
+            Debug.Log("Index: " + i + " " + "Point: " + SamplePoint(i));
+            // lineRenderer.SetPosition(0, SamplePoint(i));
+            // lineRenderer.SetPosition(0, SamplePoint(i));
         }
 
         // TODO Slice 7.3 (upgrade 1.7): draw the line with power-basis evaluation.
