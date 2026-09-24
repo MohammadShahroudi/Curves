@@ -25,11 +25,15 @@ public class QuadraticBezierCurve : MonoBehaviour
         lineRenderer.positionCount = numSamples;
         // Debug.Log(p0.localPosition);
         
-        for (int i = 0; i < numSamples; i++)
+        for (int i = 0; i <= numSamples; i++)
         {
-            Debug.Log("Index: " + i + " " + "Point: " + SamplePoint(i));
-            // lineRenderer.SetPosition(0, SamplePoint(i));
-            // lineRenderer.SetPosition(0, SamplePoint(i));
+            Debug.Log("Index: " + i + " " + "Point: " + SamplePoint((float) i / 10));
+            lineRenderer.SetPosition(0, SamplePoint((float) i / 10));
+            // lineRenderer.SetPosition(0, SamplePoint((float) i / 10));
+            // lineRenderer.SetPosition(0, p2.position);
+            // position x = -22.53 and z = -1.56 is the beginning of the curve, left
+            // position x = -10.45 and z = 4.67 is the middle of the curve
+            // position x = 0.6 and z = -1.73 is the end of the curve, right
         }
 
         // TODO Slice 7.3 (upgrade 1.7): draw the line with power-basis evaluation.
