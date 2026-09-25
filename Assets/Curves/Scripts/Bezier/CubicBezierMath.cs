@@ -16,7 +16,8 @@ public static class CubicBezierMath
         Vector3 A  = Vector3.Lerp(p0, p1, t);
         Vector3 B  = Vector3.Lerp(p1, p2, t);
         Vector3 C = Vector3.Lerp(p2, p3, t);
-        
+        // Vector3 AB = Vector3.Lerp(A, B, t);
+        // Vector3 AC = Vector3.Lerp(B, C, t);
         // return Vector3.Lerp(A, C, t);
         
         return Vector3.zero;

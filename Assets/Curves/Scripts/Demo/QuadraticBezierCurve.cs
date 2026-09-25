@@ -15,70 +15,37 @@ public class QuadraticBezierCurve : MonoBehaviour
 
     public int numSamples = 10;
 
-    void Start()
+    void Update()
     {
-        // TODO Slice 1.7: draw this curve in its LineRenderer with numSamples points.
-        // Space them evenly in t and include both endpoints.
-        // Check: restart Play Mode. The line matches the Scene-view gizmos.
-        // Next: Slice 2.1 in FollowCurve.cs. </> end of Slice 1
         LineRenderer lineRenderer = gameObject.GetComponent<LineRenderer>();
         lineRenderer.positionCount = numSamples;
-        // Debug.Log(p0.localPosition);
         
-        for (int i = 0; i <= numSamples; i++)
+        for (int i = 0; i < numSamples; i++)
         {
-            Debug.Log("Index: " + i + " " + "Point: " + SamplePoint((float) i / 10));
-            lineRenderer.SetPosition(0, SamplePoint((float) i / 10));
-            // lineRenderer.SetPosition(0, SamplePoint((float) i / 10));
-            // lineRenderer.SetPosition(0, p2.position);
+            // Debug.Log("Index: " + i + " " + "Point: " + SamplePoint((float) i / 10));
+            float t = (float) i / (numSamples - 1);
+            lineRenderer.SetPosition(i, SamplePoint(t));
             // position x = -22.53 and z = -1.56 is the beginning of the curve, left
             // position x = -10.45 and z = 4.67 is the middle of the curve
             // position x = 0.6 and z = -1.73 is the end of the curve, right
         }
-
-        // TODO Slice 7.3 (upgrade 1.7): draw the line with power-basis evaluation.
-        // Prepare the coefficients once, outside the sample loop.
-        // Check: restart Play Mode. The line still matches the gizmos,
-        // and every sample uses power evaluation.
-        // Next: Slice 7.4 in Bezier/QuadraticBezierMath.cs.
     }
 
     void OnDrawGizmos()
     {
         if (p0 == null || p1 == null || p2 == null) return;
-        // TODO Slice 1.2: draw this curve's gizmos with CurveGizmos.Draw.
-        // Its curve step (1.6) samples this curve.
-        // Check: turn on Scene-view Gizmos. Three markers sit on the points.
-        // Move a point outside Play Mode; its marker follows.
-        // Next: Slice 1.3 in CurveGizmos.cs.
         CurveGizmos.Draw(numSamples, SamplePoint, p0, p1, p2);
     }
 
     public Vector3 SamplePoint(float t)
     {
-        // TODO Slice 1.5: sample your De Casteljau quadratic at the control points'
-        // current world positions.
-        // Check: SceneCurve_SamplesCurrentWorldPointsWithoutCallbacks(False,False) passes.
-        // Next: Slice 1.6 in CurveGizmos.cs.
-        
         Vector3 sample = QuadraticBezierMath.SamplePointDeCasteljau(p0.position, p1.position, p2.position, t);
-
-        // TODO Slice 6.2 (upgrade 1.5): switch to your Bernstein evaluator.
-        // Check: the curve and follower look the same. This method calls Bernstein; keep it.
-        // Next: Slice 6.3 in Bezier/QuadraticBezierMath.cs.
+        
         return sample;
     }
 
     public Vector3 SampleTangent(float t)
     {
-        // TODO Slice 2.3: sample your De Casteljau derivative at the control points'
-        // current world positions. Do not normalize it.
-        // Check: SceneCurve_SamplesCurrentWorldPointsWithoutCallbacks(False,True) passes.
-        // Next: Slice 2.4 in FollowCurve.cs.
-
-        // TODO Slice 6.4 (upgrade 2.3): switch to your Bernstein derivative.
-        // Check: the follower faces the same way. This method calls Bernstein; keep it.
-        // Next: Slice 7.1 in Bezier/QuadraticBezierMath.cs. </> end of Slice 6
-        return Vector3.zero;
+        return QuadraticBezierMath.SampleTangentBernstein(p0.position, p1.position, p2.position, t);
     }
 }
