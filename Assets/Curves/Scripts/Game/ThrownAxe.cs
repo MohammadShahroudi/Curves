@@ -18,15 +18,6 @@ public class ThrownAxe : MonoBehaviour
     Vector3 _heldLocalPosition;
     Quaternion _heldLocalRotation;
 
-    // TODO Slice 8.1: give Assets/Curves/Prefabs/Axe.prefab a visual child that can rotate
-    // on its own, separate from the physics root. Keep its look and collision the same.
-    // Check: the held axe looks the same, and throw and catch still work.
-    // Next: Slice 8.2 below.
-
-    // TODO Slice 8.2: spin the visual child end over end, based on time.
-    // Pick an axis and speed that suit the mesh. Leave the root's rotation to physics.
-    // Next: Slice 8.3 at the hooks below and in PlayerController.ReturnAxe.
-
     public Vector3 CatchPosition => _hand.TransformPoint(_heldLocalPosition);
 
     public void Launch(Vector3 direction, float impulse, CharacterController thrower)
