@@ -13,7 +13,7 @@ public class ThrownAxe : MonoBehaviour
     public Collider axeCollider;
     public float spinSpeed = 1000f;
 
-    bool _stuck;
+    // bool _stuck;
     Transform _hand;
     Vector3 _heldLocalPosition;
     Quaternion _heldLocalRotation;
@@ -26,9 +26,9 @@ public class ThrownAxe : MonoBehaviour
         _heldLocalPosition = transform.localPosition;
         _heldLocalRotation = transform.localRotation;
         
-        Physics.IgnoreCollision(axeCollider, thrower);
+        // Physics.IgnoreCollision(axeCollider, thrower);
         transform.SetParent(null);
-        transform.right = direction;
+        transform.position += direction * 0.5f;
         
         rigidbody.isKinematic = false;
         axeCollider.enabled = true;
